@@ -26,7 +26,7 @@ if inputFile is not None:
         tempDf = data[data[data.columns[2]] == i].copy()  # Ensure proper filtering
         assignedAmounts.append(tempDf[tempDf.columns[0]].sum())
 
-        tempDf_pass = tempDf[tempDf[tempDf.columns[3]] == "pass"].copy()
+        tempDf_pass = tempDf[tempDf[tempDf.columns[3]] == "Active"].copy()
         targetAchieved.append(tempDf_pass[tempDf_pass.columns[1]].count())
         achievedAmounts.append(tempDf_pass[tempDf_pass.columns[0]].sum())
 
