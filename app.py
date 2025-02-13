@@ -45,25 +45,21 @@ if inputFile is not None:
         incentiveLogic1.append(round(incentive))
 
     # File upload for incentive data
-    incentiveFile = pd.read_excel("incentiveData.xlsx")
-    
-    if incentiveFile is not None:
-        incentiveData = pd.read_excel(incentiveFile, engine="openpyxl")
+    incentiveData = pd.read_excel("incentiveData.xlsx")
+    incentiveLogic2 = []
 
-        # Incentive calculation logic 2
-        incentiveLogic2 = []
-        for i in range(len(persons)):
-            if percAchieved[i] >= 70.0:
-                row = incentiveData[(incentiveData["start_range"] <= percAchieved[i]) & 
-                                    (percAchieved[i] <= incentiveData["end_range"])]
-                
-                if not row.empty:
-                    incentive = assignedAmounts[i] * (percAchieved[i] / 100) * row[row.columns[2]].iloc[0]
-                    incentiveLogic2.append(round(incentive))
-                else:
-                    incentiveLogic2.append(0.0)
+    for i in range(len(persons)):
+        if percAchieved[i] >= 70.0:
+            row = incentiveData[(incentiveData["start_range"] <= percAchieved[i]) & 
+                                (percAchieved[i] <= incentiveData["end_range"])]
+            
+            if not row.empty:
+                incentive = assignedAmounts[i] * (percAchieved[i] / 100) * row[row.columns[2]].iloc[0]
+                incentiveLogic2.append(round(incentive))
             else:
                 incentiveLogic2.append(0.0)
+        else:
+            incentiveLogic2.append(0.0)
 
         # Prepare final DataFrame
         finalData = pd.DataFrame({
