@@ -45,7 +45,7 @@ if inputFile is not None:
         incentiveLogic1.append(round(incentive))
 
     # File upload for incentive data
-    #incentiveFile = st.file_uploader("Upload Incentive Data", type=["xlsx", "xls"])
+    incentiveFile = pd.read_excel("incentiveData.xlsx")
     
     if incentiveFile is not None:
         incentiveData = pd.read_excel(incentiveFile, engine="openpyxl")
