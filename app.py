@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 st.header("Incentive Calculator")
 
@@ -51,24 +53,21 @@ if inputFile is not None:
 
     st.dataframe(finalData)
 
-# Plot the bar chart
-fig, ax = plt.subplots()
-x = np.arange(len(df["Individuals"]))
-width = 0.4  # Width of the bars
+    fig, ax = plt.subplots()
+    x = np.arange(len(finalData["Individuals"]))
+    width = 0.4
 
-ax.bar(x - width/2, df["incentiveLogic1"], width, label="incentiveLogic1", color='blue')
-ax.bar(x + width/2, df["incentiveLogic2"], width, label="incentiveLogic2", color='orange')
-
-# Labels and titles
-ax.set_xlabel("Individuals")
-ax.set_ylabel("Incentives")
-ax.set_title("Comparison of Incentive Logic")
-ax.set_xticks(x)
-ax.set_xticklabels(df["Individuals"])
-ax.legend()
-
-# Show the plot in Streamlit
-st.pyplot(fig)
+    ax.bar(x - width/2, finalData["incentiveLogic1"], width, label="incentiveLogic1", color='blue')
+    ax.bar(x + width/2, finalData["incentiveLogic2"], width, label="incentiveLogic2", color='orange')
+    
+    ax.set_xlabel("Individuals")
+    ax.set_ylabel("Incentives")
+    ax.set_title("Comparison of Incentive Logic")
+    ax.set_xticks(x)
+    ax.set_xticklabels(finalData["Individuals"])
+    ax.legend()
+    
+    st.pyplot(fig)
 
 
 
