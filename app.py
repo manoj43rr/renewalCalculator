@@ -86,6 +86,7 @@ if inputFile is not None:
     ax.legend()
 
     st.pyplot(fig)
+    st.balloons()
 else:
     st.warning("Something Wrong", icon="⚠️")
 
