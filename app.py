@@ -59,9 +59,11 @@ if inputFile is not None:
             incentiveLogic2.append(0.0)
 
     finalData = pd.DataFrame({
-        "Individuals": persons,
-        "incentiveLogic1": incentiveLogic1,
-        "incentiveLogic2": incentiveLogic2
+        "Individuals" : persons,
+        "Assigned Amount" : assignedAmounts,
+        "Percentage of renwals Done": percAchieved,
+        "incentiveLogic1" : incentiveLogic1,
+        "incentiveLogic2" : incentiveLogic2,
     })
 
     st.dataframe(finalData)
