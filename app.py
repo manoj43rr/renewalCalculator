@@ -39,8 +39,11 @@ if inputFile is not None:
 
     incentiveLogic1 = []
     for i in range(len(persons)):
-        incentive = assignedAmounts[i] * (percAchieved[i] / 100) * ((((percAchieved[i] / 100) - 0.7) / 100) + 0.005)
-        incentiveLogic1.append(round(incentive))
+        if percAchieved[i] >= 70.0:
+            incentive = assignedAmounts[i] * (percAchieved[i] / 100) * ((((percAchieved[i] / 100) - 0.7) / 100) + 0.005)
+            incentiveLogic1.append(round(incentive))
+        else:
+            incentiveLogic1.append(0)
 
     incentiveData = pd.read_excel("incentiveData.xlsx")
     incentiveLogic2 = []
